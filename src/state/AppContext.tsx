@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, Dispatch, FC } from "react";
+import React, { createContext, Dispatch, FC } from "react";
 import { reducer, Task, List, AppState } from "./reducer";
 import { Action } from "./actions";
 import { useImmerReducer } from "use-immer";
@@ -34,6 +34,10 @@ const appData: AppState = {
                 {
                     id: "T3",
                     text: "Begin to use static typing"
+                },
+                {
+                    id: "T4",
+                    text: "Deploy to github pages"
                 }
             ]
         }
