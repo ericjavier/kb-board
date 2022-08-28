@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/kb-board/static/css/main.c77b1204.css",
-    "main.js": "/kb-board/static/js/main.6636853f.js",
+    "main.js": "/kb-board/static/js/main.b34bf964.js",
     "index.html": "/kb-board/index.html",
     "main.c77b1204.css.map": "/kb-board/static/css/main.c77b1204.css.map",
-    "main.6636853f.js.map": "/kb-board/static/js/main.6636853f.js.map"
+    "main.b34bf964.js.map": "/kb-board/static/js/main.b34bf964.js.map"
   },
   "entrypoints": [
     "static/css/main.c77b1204.css",
-    "static/js/main.6636853f.js"
+    "static/js/main.b34bf964.js"
   ]
 }
