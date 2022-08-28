@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AppContainer = styled.div`
     align-items: flex-start;
-    background-color: #7179ba;
+    background-color: #1119ba;
     display: flex;
     flex-direction: row;
     height: 100%;
