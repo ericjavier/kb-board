@@ -40,6 +40,19 @@ export const reducer = (draft: AppState, action: Action): AppState | void => {
             draft.lists = moveItem(draft.lists, movingFromIndex, movingToIndex);
             break;
         }
+        case "MOVE_TASK": {
+            const { draggingId, hoveringId, sourceColumnId, targetColumnId } = action;
+            const sourceListIndex = findItemIndexById(draft.lists, sourceColumnId);
+            const targetListIndex = findItemIndexById(draft.lists, targetColumnId);
+            const dragIndex = findItemIndexById(draft.lists[sourceListIndex].tasks, draggingId);
+            const hoverIndex = hoveringId ? findItemIndexById(draft.lists[targetListIndex].tasks, hoveringId) : 0;
+            const item = draft.lists[sourceListIndex].tasks[dragIndex];
+            // Remove the task from the source list
+            draft.lists[sourceListIndex].tasks.splice(dragIndex, 1)
+            // Add the task to the target list
+            draft.lists[targetListIndex].tasks.splice(hoverIndex, 0, item)
+            break;
+        }
         case "SET_DRAGGING_ITEM": {
             draft.draggingItem = action.draggingItem;
             break;

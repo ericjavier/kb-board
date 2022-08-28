@@ -13,7 +13,7 @@ const appData: AppState = {
             tasks: [
                 {
                     id: "T1",
-                    text: "Generate app scaffold"
+                    text: "Generate app scaffold",
                 }
             ]
         },
