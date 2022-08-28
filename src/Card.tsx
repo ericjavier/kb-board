@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { CardContainer } from "./styles";
-import { useDraggingItem } from "./hooks/useDraggingItem";
+import { useDragItem } from "./hooks/useDragItem";
 import { useDrop } from "react-dnd";
 import { useAppState } from "./hooks/useAppState";
 import { moveTask, setDraggingItem } from "./state/actions";
-import { isHidden } from "./DraggingItem";
+import { isHidden } from "./DragItem";
 
 type CardProps = {
     text: string;
@@ -14,9 +14,9 @@ type CardProps = {
 };
 
 export const Card = ({ text, id, columnId, isPreview }: CardProps) => {
-    const { draggingItem, dispatch } = useAppState();
+    const { draggedItem, dispatch } = useAppState();
     const ref = useRef<HTMLDivElement>(null);
-    const { drag } = useDraggingItem({
+    const { drag } = useDragItem({
         type: "CARD",
         id,
         text,
@@ -25,20 +25,20 @@ export const Card = ({ text, id, columnId, isPreview }: CardProps) => {
     const [, drop ] = useDrop({
         accept: "CARD",
         hover: () => {
-            if (!draggingItem) {
+            if (!draggedItem) {
                 return;
             }
 
-            if (draggingItem.type !== "CARD") {
+            if (draggedItem.type !== "CARD") {
                 return;
             }
 
-            if (draggingItem.id === id) {
+            if (draggedItem.id === id) {
                 return;
             }
 
-            dispatch(moveTask(draggingItem.id, id, draggingItem.columnId, columnId));
-            dispatch(setDraggingItem({ ...draggingItem, columnId }));
+            dispatch(moveTask(draggedItem.id, id, draggedItem.columnId, columnId));
+            dispatch(setDraggingItem({ ...draggedItem, columnId }));
         }
     });
 
@@ -46,7 +46,7 @@ export const Card = ({ text, id, columnId, isPreview }: CardProps) => {
 
     return (
         <CardContainer
-            isHidden={isHidden(draggingItem, "CARD", id, isPreview)}
+            isHidden={isHidden(draggedItem, "CARD", id, isPreview)}
             isPreview={isPreview}
             ref={ref}>
             {text}

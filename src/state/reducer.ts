@@ -1,7 +1,7 @@
 import { Action } from "./actions";
 import { nanoid } from "nanoid";
 import { findItemIndexById, moveItem } from "../utils/arrayUtils";
-import { DraggingItem } from "../DraggingItem";
+import { DragItem } from "../DragItem";
 
 export type Task = {
     id: string;
@@ -16,7 +16,7 @@ export type List = {
 
 export type AppState = {
     lists: List[];
-    draggingItem: DraggingItem | null;
+    draggedItem: DragItem | null;
 };
 
 export const reducer = (draft: AppState, action: Action): AppState | void => {
@@ -54,7 +54,7 @@ export const reducer = (draft: AppState, action: Action): AppState | void => {
             break;
         }
         case "SET_DRAGGING_ITEM": {
-            draft.draggingItem = action.draggingItem;
+            draft.draggedItem = action.draggingItem;
             break;
         }
         default: break;

@@ -2,10 +2,10 @@ import React, { createContext, Dispatch, FC } from "react";
 import { reducer, Task, List, AppState } from "./reducer";
 import { Action } from "./actions";
 import { useImmerReducer } from "use-immer";
-import { DraggingItem } from "../DraggingItem";
+import { DragItem } from "../DragItem";
 
 const appData: AppState = {
-    draggingItem: null,
+    draggedItem: null,
     lists: [
         {
             id: "L1",
@@ -48,20 +48,20 @@ type AppContextProps = {
     lists: List[];
     getTasks(id: string): Task[];
     dispatch: Dispatch<Action>;
-    draggingItem: DraggingItem | null;
+    draggedItem: DragItem | null;
 };
 
 export const AppStateContext = createContext<AppContextProps>({} as AppContextProps);
 
 export const AppStateProvider: FC<React.PropsWithChildren> = ({ children }) => {
-    const [ { lists, draggingItem }, dispatch ] = useImmerReducer(reducer, appData);
+    const [ { lists, draggedItem }, dispatch ] = useImmerReducer(reducer, appData);
 
     const getTasks = (id: string) => {
         return lists.find(ls => ls.id === id)?.tasks || [];
     };
 
     return (
-        <AppStateContext.Provider value={{ lists, getTasks, dispatch, draggingItem }}>
+        <AppStateContext.Provider value={{ lists, getTasks, dispatch, draggedItem }}>
             {children}
         </AppStateContext.Provider>
     );

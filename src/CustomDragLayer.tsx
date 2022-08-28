@@ -1,11 +1,11 @@
 import { useDragLayer } from "react-dnd";
 import { Column } from "./Column";
 import { Card } from "./Card";
-import { CustomDraggingLayerContainer, DraggingPreviewWrapper } from "./styles";
+import { CustomDragLayerContainer, DragPreviewWrapper } from "./styles";
 import { useAppState } from "./hooks/useAppState";
 
-export const CustomDraggingLayer = () => {
-    const { draggingItem } = useAppState();
+export const CustomDragLayer = () => {
+    const { draggedItem: draggingItem } = useAppState();
     const { currentOffset } = useDragLayer((monitor) =>  ({
         currentOffset: monitor.getSourceClientOffset(),
     }));
@@ -16,20 +16,20 @@ export const CustomDraggingLayer = () => {
 
     if (draggingItem.type === "COLUMN") {
         return (
-            <CustomDraggingLayerContainer>
-                <DraggingPreviewWrapper position={currentOffset}>
+            <CustomDragLayerContainer>
+                <DragPreviewWrapper position={currentOffset}>
                     <Column id={draggingItem.id} text={draggingItem.text} isPreview />
-                </DraggingPreviewWrapper>
-            </CustomDraggingLayerContainer>
+                </DragPreviewWrapper>
+            </CustomDragLayerContainer>
         );
     }
 
     // draggingItem.type === "CARD"
     return (
-        <CustomDraggingLayerContainer>
-            <DraggingPreviewWrapper position={currentOffset}>
+        <CustomDragLayerContainer>
+            <DragPreviewWrapper position={currentOffset}>
                 <Card id={draggingItem.id} text={draggingItem.text} columnId={draggingItem.columnId} isPreview />
-            </DraggingPreviewWrapper>
-        </CustomDraggingLayerContainer>
+            </DragPreviewWrapper>
+        </CustomDragLayerContainer>
     );
 };

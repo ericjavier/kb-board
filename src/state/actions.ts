@@ -1,4 +1,4 @@
-import { DraggingItem } from "../DraggingItem";
+import { DragItem } from "../DragItem";
 
 export type AddListAction = { type: "ADD_LIST"; text: string; };
 
@@ -37,9 +37,9 @@ export const moveTask = (draggingId: string, hoveringId: string | null, sourceCo
     };
 };
 
-type SetDraggingItemAction = { type: "SET_DRAGGING_ITEM"; draggingItem: DraggingItem | null; };
+type SetDraggingItemAction = { type: "SET_DRAGGING_ITEM"; draggingItem: DragItem | null; };
 
-export const setDraggingItem = (draggingItem: DraggingItem | null = null): Action => {
+export const setDraggingItem = (draggingItem: DragItem | null = null): Action => {
     return { type: "SET_DRAGGING_ITEM", draggingItem: draggingItem };
 };
 
